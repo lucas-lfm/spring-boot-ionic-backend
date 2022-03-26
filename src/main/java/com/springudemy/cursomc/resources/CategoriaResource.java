@@ -1,14 +1,15 @@
 package com.springudemy.cursomc.resources;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.springudemy.cursomc.domain.Categoria;
 import com.springudemy.cursomc.services.CategoriaService;
@@ -27,18 +28,12 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> listar() {
-		Categoria cat1 = new Categoria(1, "Informática");
-		Categoria cat2 = new Categoria(2, "Escritório");
-		Categoria cat3 = new Categoria(3, "Limpeza");
-		
-		List<Categoria> categorias = new ArrayList<>();
-		categorias.add(cat1);
-		categorias.add(cat2);
-		categorias.add(cat3);
-		
-		return categorias;
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody Categoria obj){
+		obj = catServ.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
 }
