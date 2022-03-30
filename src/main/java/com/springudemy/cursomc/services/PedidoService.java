@@ -13,10 +13,10 @@ import com.springudemy.cursomc.services.exceptions.ObjectNotFoundException;
 public class PedidoService {
 
 	@Autowired
-	private PedidoRepository catRepo;
+	private PedidoRepository pedRepo;
 	
 	public Pedido find(Integer id) {
-		Optional<Pedido> obj = catRepo.findById(id);
+		Optional<Pedido> obj = pedRepo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + 
 				", Tipo: " + Pedido.class.getName()));
 	}

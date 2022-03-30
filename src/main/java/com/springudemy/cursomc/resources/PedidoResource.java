@@ -15,11 +15,11 @@ import com.springudemy.cursomc.services.PedidoService;
 public class PedidoResource {
 	
 	@Autowired
-	private PedidoService catServ;
+	private PedidoService pedServ;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<Pedido> find(@PathVariable Integer id) {
-		Pedido obj = catServ.find(id);
+		Pedido obj = pedServ.find(id);
 		
 		return ResponseEntity.ok().body(obj);
 	}
