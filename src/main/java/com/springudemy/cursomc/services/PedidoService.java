@@ -71,7 +71,8 @@ public class PedidoService {
 		
 		ipRepo.saveAll(obj.getItens());
 		
-		emailServ.sendOrderConfirmationEmail(obj);
+		//emailServ.sendOrderConfirmationEmail(obj);
+		emailServ.sendOrderConfirmationHtmlEmail(obj);
 		
 		return obj;
 	}
