@@ -34,7 +34,11 @@ public class PedidoService {
 	@Autowired
 	private PagamentoRepository pagRepo;
 	
-	@Autowired ItemPedidoRepository ipRepo;
+	@Autowired 
+	private ItemPedidoRepository ipRepo;
+	
+	@Autowired
+	private EmailService emailServ;
 	
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = pedRepo.findById(id);
@@ -67,7 +71,7 @@ public class PedidoService {
 		
 		ipRepo.saveAll(obj.getItens());
 		
-		System.out.println(obj);
+		emailServ.sendOrderConfirmationEmail(obj);
 		
 		return obj;
 	}
