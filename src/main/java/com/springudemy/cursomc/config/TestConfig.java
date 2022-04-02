@@ -16,7 +16,7 @@ import com.springudemy.cursomc.services.MockEmailService;
 public class TestConfig {
 
 	@Autowired
-	DBService dbServ;
+	private DBService dbServ;
 	
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
