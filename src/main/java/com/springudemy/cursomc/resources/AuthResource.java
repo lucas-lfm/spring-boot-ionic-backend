@@ -24,6 +24,8 @@ public class AuthResource {
 	public ResponseEntity<Void> refreshToken(HttpServletResponse response){
 		String token = authService.refreshToken();
 		response.addHeader("Authorization", "Bearer "+token);
+		// Expoe o header Authorization para fontes diferentes (Cors)
+		response.addHeader("access-control-expose-headers", "Authorization");
 		return ResponseEntity.noContent().build();
 	}
 	
