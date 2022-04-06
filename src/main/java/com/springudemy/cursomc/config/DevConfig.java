@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.springudemy.cursomc.services.DBService;
+import com.springudemy.cursomc.services.DBDevService;
 import com.springudemy.cursomc.services.EmailService;
 import com.springudemy.cursomc.services.SmtpEmailService;
 
@@ -17,7 +17,7 @@ import com.springudemy.cursomc.services.SmtpEmailService;
 public class DevConfig {
 
 	@Autowired
-	DBService dbServ;
+	DBDevService dbServ;
 	
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
